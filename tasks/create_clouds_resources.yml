@@ -87,7 +87,7 @@
 - name: Create per-cloud networks for {{ clouds_loop.name }}
   os_network:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.1.present|default(omit) }}"
+    state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.name }}"
     external: "{{ item.external|default(omit) }}"
     project: "{{ item.project|default(omit) }}"
@@ -98,7 +98,7 @@
 - name: Create profiles networks for {{ clouds_loop.name }}
   os_network:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.1.present|default(omit) }}"
+    state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     external: "{{ item.1.external|default(omit) }}"
     project: "{{ item.1.project|default(omit) }}"
@@ -113,7 +113,7 @@
 - name: Create per-cloud subnets for cloud {{ clouds_loop.name }}
   os_subnet:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.present|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     network_name: "{{ item.network_name|default(omit) }}"
     cidr: "{{ item.cidr }}"
@@ -125,7 +125,7 @@
 - name: Create profiles subnets for {{ clouds_loop.name }}
   os_subnet:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.1.present|default(omit) }}"
+    state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     network_name: "{{ item.1.network_name|default(omit) }}"
     cidr: "{{ item.1.cidr }}"
@@ -141,7 +141,7 @@
 - name: Create per-cloud routers for cloud {{ clouds_loop.name }}
   os_router:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.present|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     network: "{{ item.network }}"
     admin_state_up: "{{ item.admin_state_up|default(omit) }}"
@@ -155,7 +155,7 @@
 - name: Create profiles routers for {{ clouds_loop.name }}
   os_router:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.1.present|default(omit) }}"
+    state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     network: "{{ item.1.network }}"
     admin_state_up: "{{ item.1.admin_state_up|default(omit) }}"
@@ -173,7 +173,7 @@
 - name: Create per-cloud flavors for {{ clouds_loop.name }}
   os_nova_flavor:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.present|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     vcpus: "{{ item.vcpus }}"
     ram: "{{ item.ram }}"
@@ -188,7 +188,7 @@
 - name: Create profiles flavors for {{ clouds_loop.name }}
   os_nova_flavor:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.1.present|default(omit) }}"
+    state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     vcpus: "{{ item.1.vcpus }}"
     ram: "{{ item.1.ram }}"
@@ -207,7 +207,7 @@
 - name: Create per-cloud images for {{ clouds_loop.name }}
   os_image:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.present|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     container_format: "{{ item.container_format|default(omit) }}"
     disk_format: "{{ item.disk_format|default(omit) }}"
@@ -226,7 +226,7 @@
 - name: Create profiles images for {{ clouds_loop.name }}
   os_image:
     cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
-    state: "{{ item.1.present|default(omit) }}"
+    state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     container_format: "{{ item.1.container_format|default(omit) }}"
     disk_format: "{{ item.1.disk_format|default(omit) }}"
