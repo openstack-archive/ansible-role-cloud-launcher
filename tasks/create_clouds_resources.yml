@@ -1,22 +1,17 @@
 ---
-- set_fact:
-    clouds_loop: "{{ item }}"
-  tags:
-    - always
-
-- name: Create per-cloud domains for cloud "{{ clouds_loop.name }}"
+- name: Create per-cloud domains for cloud "{{ item_cloud.name }}"
   os_keystone_domain:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     description: "{{ item.description|default(omit) }}"
-  with_items: "{{ clouds_loop.domains|default([]) }}"
+  with_items: "{{ item_cloud.domains|default([]) }}"
   tags:
     - domains
 
-- name: Create profiles domains for cloud {{ clouds_loop.name }}
+- name: Create profiles domains for cloud {{ item_cloud.name }}
   os_keystone_domain:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     description: "{{ item.1.description|default(omit) }}"
@@ -24,24 +19,24 @@
     - "{{ profiles }}"
     - domains
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - domains
 
-- name: Create per-cloud projects for cloud {{ clouds_loop.name }}
+- name: Create per-cloud projects for cloud {{ item_cloud.name }}
   os_project:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     description: "{{ item.description|default(omit) }}"
     domain: "{{ item.domain|default(omit) }}"
-  with_items: "{{ clouds_loop.projects|default([]) }}"
+  with_items: "{{ item_cloud.projects|default([]) }}"
   tags:
     - projects
 
-- name: Create profiles projects for cloud {{ clouds_loop.name }}
+- name: Create profiles projects for cloud {{ item_cloud.name }}
   os_project:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     description: "{{ item.1.description|default(omit) }}"
@@ -50,26 +45,26 @@
     - "{{ profiles }}"
     - projects
     - { skip_missing: yes}
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - projects
 
-- name: Create per-cloud users for cloud {{ clouds_loop.name }}
+- name: Create per-cloud users for cloud {{ item_cloud.name }}
   os_user:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     password: "{{ item.password }}"
     email: "{{ item.email|default(omit) }}"
     domain: "{{ item.domain|default(omit) }}"
     default_project: "{{ item.default_project|default(omit) }}"
-  with_items: "{{ clouds_loop.users|default([]) }}"
+  with_items: "{{ item_cloud.users|default([]) }}"
   tags:
     - users
 
-- name: Create profiles users for cloud {{ clouds_loop.name }}
+- name: Create profiles users for cloud {{ item_cloud.name }}
   os_user:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     password: "{{ item.1.password }}"
@@ -80,24 +75,24 @@
     - "{{ profiles }}"
     - users
     - { skip_missing: yes}
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - users
 
-- name: Create per-cloud networks for {{ clouds_loop.name }}
+- name: Create per-cloud networks for {{ item_cloud.name }}
   os_network:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.name }}"
     external: "{{ item.external|default(omit) }}"
     project: "{{ item.project|default(omit) }}"
-  with_items: "{{ clouds_loop.networks|default([]) }}"
+  with_items: "{{ item_cloud.networks|default([]) }}"
   tags:
     - networks
 
-- name: Create profiles networks for {{ clouds_loop.name }}
+- name: Create profiles networks for {{ item_cloud.name }}
   os_network:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     external: "{{ item.1.external|default(omit) }}"
@@ -106,25 +101,25 @@
     - "{{ profiles }}"
     - networks
     - { skip_missing: yes}
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - networks
 
-- name: Create per-cloud subnets for cloud {{ clouds_loop.name }}
+- name: Create per-cloud subnets for cloud {{ item_cloud.name }}
   os_subnet:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     network_name: "{{ item.network_name|default(omit) }}"
     cidr: "{{ item.cidr }}"
     dns_nameservers: "{{ item.dns_nameservers|default(omit) }}"
-  with_items: "{{ clouds_loop.subnets|default([]) }}"
+  with_items: "{{ item_cloud.subnets|default([]) }}"
   tags:
     - subnets
 
-- name: Create profiles subnets for {{ clouds_loop.name }}
+- name: Create profiles subnets for {{ item_cloud.name }}
   os_subnet:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     network_name: "{{ item.1.network_name|default(omit) }}"
@@ -134,13 +129,13 @@
     - "{{ profiles }}"
     - subnets
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - subnets
 
-- name: Create per-cloud routers for cloud {{ clouds_loop.name }}
+- name: Create per-cloud routers for cloud {{ item_cloud.name }}
   os_router:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     network: "{{ item.network }}"
@@ -148,13 +143,13 @@
     enable_snat: "{{ item.enable_snat|default(omit) }}"
     external_fixed_ips: "{{ item.external_fixed_ips|default(omit) }}"
     interfaces: "{{ item.interfaces|default(omit) }}"
-  with_items: "{{ clouds_loop.subnets|default([]) }}"
+  with_items: "{{ item_cloud.subnets|default([]) }}"
   tags:
     - routers
 
-- name: Create profiles routers for {{ clouds_loop.name }}
+- name: Create profiles routers for {{ item_cloud.name }}
   os_router:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     network: "{{ item.1.network }}"
@@ -166,13 +161,13 @@
     - "{{ profiles }}"
     - routers
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - routers
 
-- name: Create per-cloud flavors for {{ clouds_loop.name }}
+- name: Create per-cloud flavors for {{ item_cloud.name }}
   os_nova_flavor:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     vcpus: "{{ item.vcpus }}"
@@ -181,13 +176,13 @@
     swap: "{{ item.swap|default(omit) }}"
     ephemeral: "{{ item.ephemeral|default(omit) }}"
     rxtx_factor: "{{ item.rxtx_factor|default(omit) }}"
-  with_items: "{{ clouds_loop.flavors|default([]) }}"
+  with_items: "{{ item_cloud.flavors|default([]) }}"
   tags:
     - flavors
 
-- name: Create profiles flavors for {{ clouds_loop.name }}
+- name: Create profiles flavors for {{ item_cloud.name }}
   os_nova_flavor:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     vcpus: "{{ item.1.vcpus }}"
@@ -200,13 +195,13 @@
     - "{{ profiles }}"
     - flavors
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - flavors
 
-- name: Create per-cloud images for {{ clouds_loop.name }}
+- name: Create per-cloud images for {{ item_cloud.name }}
   os_image:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     container_format: "{{ item.container_format|default(omit) }}"
@@ -219,13 +214,13 @@
     owner: "{{ item.owner|default(omit) }}"
     properties: "{{ item.properties|default(omit) }}"
     is_public: "{{ item.is_public|default(omit) }}"
-  with_items: "{{ clouds_loop.images|default([]) }}"
+  with_items: "{{ item_cloud.images|default([]) }}"
   tags:
     - images
 
-- name: Create profiles images for {{ clouds_loop.name }}
+- name: Create profiles images for {{ item_cloud.name }}
   os_image:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     container_format: "{{ item.1.container_format|default(omit) }}"
@@ -242,23 +237,23 @@
     - "{{ profiles }}"
     - images
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - images
 
-- name: Create per-cloud security groups for {{ clouds_loop.name }}
+- name: Create per-cloud security groups for {{ item_cloud.name }}
   os_security_group:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     description: "{{ item.description|default(omit) }}"
-  with_items: "{{ clouds_loop.security_groups|default([]) }}"
+  with_items: "{{ item_cloud.security_groups|default([]) }}"
   tags:
     - security_groups
 
-- name: Create profiles security groups for {{ clouds_loop.name }}
+- name: Create profiles security groups for {{ item_cloud.name }}
   os_security_group:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     description: "{{ item.1.description|default(omit) }}"
@@ -266,13 +261,13 @@
     - "{{ profiles }}"
     - security_groups
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - security_groups
 
-- name: Create per-cloud security groups rules for {{ clouds_loop.name }}
+- name: Create per-cloud security groups rules for {{ item_cloud.name }}
   os_security_group_rule:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     security_group: "{{ item.security_group }}"
     direction: "{{ item.direction|default(omit) }}"
@@ -282,13 +277,13 @@
     protocol: "{{ item.protocol|default(omit) }}"
     remote_group: "{{ item.remote_group|default(omit) }}"
     remote_ip_prefix: "{{ item.remote_ip_prefix|default(omit) }}"
-  with_items: "{{ clouds_loop.security_groups_rules|default([]) }}"
+  with_items: "{{ item_cloud.security_groups_rules|default([]) }}"
   tags:
     - security_groups_rules
 
-- name: Create profiles security groups rules for {{ clouds_loop.name }}
+- name: Create profiles security groups rules for {{ item_cloud.name }}
   os_security_group_rule:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     security_group: "{{ item.1.security_group }}"
     direction: "{{ item.1.direction|default(omit) }}"
@@ -302,24 +297,24 @@
     - "{{ profiles }}"
     - security_groups_rules
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - security_groups_rules
 
-- name: Create per-cloud keypairs for {{ clouds_loop.name }}
+- name: Create per-cloud keypairs for {{ item_cloud.name }}
   os_keypair:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     public_key: "{{ item.public_key|default(omit) }}"
     public_key_file: "{{ item.public_key_file|default(omit) }}"
-  with_items: "{{ clouds_loop.keypairs|default([]) }}"
+  with_items: "{{ item_cloud.keypairs|default([]) }}"
   tags:
     - keypairs
 
-- name: Create profiles keypairs rules for {{ clouds_loop.name }}
+- name: Create profiles keypairs rules for {{ item_cloud.name }}
   os_keypair:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     public_key: "{{ item.1.public_key|default(omit) }}"
@@ -328,13 +323,13 @@
     - "{{ profiles }}"
     - keypairs
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - keypairs
 
-- name: Create per-cloud volumes for {{ clouds_loop.name }}
+- name: Create per-cloud volumes for {{ item_cloud.name }}
   os_volume:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     size: "{{ item.size }}"
@@ -343,13 +338,13 @@
     key: "{{ item.key|default(omit) }}"
     snapshot_id: "{{ item.snapshot_id|default(omit) }}"
     volume_type: "{{ item.volume_type|default(omit) }}"
-  with_items: "{{ clouds_loop.volumes|default([]) }}"
+  with_items: "{{ item_cloud.volumes|default([]) }}"
   tags:
     - volumes
 
-- name: Create profiles volumes for {{ clouds_loop.name }}
+- name: Create profiles volumes for {{ item_cloud.name }}
   os_volume:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     size: "{{ item.1.size }}"
@@ -362,13 +357,13 @@
     - "{{ profiles }}"
     - volumes
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - volumes
 
-- name: Create per-cloud servers for {{ clouds_loop.name }}
+- name: Create per-cloud servers for {{ item_cloud.name }}
   os_server:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     image: "{{ item.image }}"
@@ -393,13 +388,13 @@
     userdata: "{{ item.userdata|default(omit) }}"
     volume_size: "{{ item.volume_size|default(omit) }}"
     volumes: "{{ item.volumes|default(omit) }}"
-  with_items: "{{ clouds_loop.servers|default([]) }}"
+  with_items: "{{ item_cloud.servers|default([]) }}"
   tags:
     - servers
 
-- name: Create profiles servers for {{ clouds_loop.name }}
+- name: Create profiles servers for {{ item_cloud.name }}
   os_server:
-    cloud: "{{ clouds_loop.oscc_cloud|default(clouds_loop.name) }}"
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item.1.state|default(omit) }}"
     name: "{{ item.1.name }}"
     image: "{{ item.1.image }}"
@@ -428,6 +423,6 @@
     - "{{ profiles }}"
     - servers
     - { skip_missing: yes }
-  when: "{{ item.0.name in clouds_loop.profiles }}"
+  when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - servers

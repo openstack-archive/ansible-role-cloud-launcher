@@ -1,3 +1,5 @@
 ---
 - include: create_clouds_resources.yml
   with_items: "{{ clouds }}"
+  loop_control:
+    loop_var: item_cloud
