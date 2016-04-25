@@ -22,13 +22,14 @@ None
 
 Example playbook
 ----------------
-
+```
   ---
   - hosts: localhost
     connection: local
     gather_facts: false
     roles:
       - { role: ansible-openstack-cloud-launcher }
+```
 
 License
 -------
