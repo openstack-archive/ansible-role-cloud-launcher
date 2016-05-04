@@ -1,0 +1,8 @@
+Code-Review+2: Ricardo Carrillo Cruz <ricardo.carrillo.cruz@gmail.com>
+Workflow+1: Ricardo Carrillo Cruz <ricardo.carrillo.cruz@gmail.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 04 May 2016 19:56:28 +0000
+Reviewed-on: https://review.openstack.org/312451
+Project: openstack/ansible-role-cloud-launcher
+Branch: refs/heads/master
