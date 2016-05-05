@@ -1,0 +1,45 @@
+profiles:
+  - name: test-profile-domains
+    domains:
+      - name: ops
+        description: Ops team domain
+      - name: qa
+        description: QA team domain
+      - name: rnd
+        description: R&D team domain
+    projects:
+      - name: ops
+        domain: ops
+        description: Ops team project
+      - name: qa
+        domain: qa
+        description: QA team project
+      - name: rnd
+        domain: rnd
+        description: RnD team project
+  - name: test-profile-users
+    users:
+      - name: opsadmin
+        password: changeme
+        email: opsadmin@aoclcompany.aocl
+        domain: ops
+        default_project: ops
+      - name: qaadmin
+        password: changeme
+        email: qaadmin@aoclcompany.aocl
+        domain: qa
+        default_project: qa
+      - name: rndadmin
+        password: changeme
+        email: rndadmin@aoclcompany.aocl
+        domain: rnd
+        default_project: rnd
+clouds:
+  - name: devstack-admin
+    profiles:
+      - test-profile-domains
+      - test-profile-users
+    servers:
+      - name: test-per-cloud-server
+        image: cirros-0.3.4-x86_64-uec
+        flavor: c1
