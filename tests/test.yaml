@@ -1,0 +1,64 @@
+# Copyright 2016 Hewlett-Packard Enterprise, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+- hosts: test
+  become: yes
+  vars:
+    rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+
+  roles:
+    - "{{ rolename }}"
+
+  post_tasks:
+    - name: Querying for test_domain domain
+      shell: openstack --os-cloud devstack-admin domain show test_domain
+      register: result
+
+    - name: Assert test_domain domain has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_project project
+      shell: openstack --os-cloud devstack-admin project show test_project --domain test_domain
+      register: result
+
+    - name: Assert test_project project has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_user user
+      shell: openstack --os-cloud devstack-admin user show test_user --domain test_domain
+      register: result
+
+    - name: Assert test_user user has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_server_a server
+      shell: openstack --os-cloud devstack-admin server show test_server_a
+      register: result
+
+    - name: Assert test-server-a server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_server_b server
+      shell: openstack --os-cloud devstack server show test_server_b
+      register: result
+
+    - name: Assert test_server_a server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_network network
+      shell: openstack --os-cloud devstack network show test_network
+      register: result
+
+    - name: Assert test-network network has been created
+      assert: { that: result.rc == 0 }

@@ -1,0 +1,41 @@
+profiles:
+  - name: test_profile_a
+    domains:
+      - name: test_domain
+        description: test description
+    projects:
+      - name: test_project
+        domain: test_domain
+        description: test project
+  - name: test_profile_b
+    users:
+      - name: test_user
+        password: changeme
+        email: test@test.net
+        domain: test_domain
+        default_project: test_project
+clouds:
+  - name: devstack-admin
+    profiles:
+      - test_profile_a
+      - test_profile_b
+    servers:
+      - name: test_server_a
+        image: cirros-0.3.4-x86_64-uec
+        flavor: c1
+  - name: devstack
+    servers:
+      - name: test_server_b
+        image: cirros-0.3.4-x86_64-uec
+        flavor: c1
+        network: test_network
+    networks:
+      - name: test_network
+    subnets:
+      - name: test_subnet
+        network_name: test_network
+        cidr: 10.0.0.1/24
+    routers:
+      - name: test_router
+        network: public
+        interfaces: test_subnet
