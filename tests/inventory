@@ -1,0 +1,2 @@
+[test]
+test01 ansible_host=localhost
