@@ -16,7 +16,7 @@
     name: "{{ item.1.name }}"
     description: "{{ item.1.description|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - domains
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -42,7 +42,7 @@
     description: "{{ item.1.description|default(omit) }}"
     domain: "{{ item.1.domain|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - projects
     - { skip_missing: yes}
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -72,7 +72,7 @@
     domain: "{{ item.1.domain|default(omit) }}"
     default_project: "{{ item.1.default_project|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - users
     - { skip_missing: yes}
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -98,7 +98,7 @@
     external: "{{ item.1.external|default(omit) }}"
     project: "{{ item.1.project|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - networks
     - { skip_missing: yes}
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -126,7 +126,7 @@
     cidr: "{{ item.1.cidr }}"
     dns_nameservers: "{{ item.1.dns_nameservers|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - subnets
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -158,7 +158,7 @@
     external_fixed_ips: "{{ item.1.external_fixed_ips|default(omit) }}"
     interfaces: "{{ item.1.interfaces|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - routers
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -192,7 +192,7 @@
     ephemeral: "{{ item.1.ephemeral|default(omit) }}"
     rxtx_factor: "{{ item.1.rxtx_factor|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - flavors
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -234,7 +234,7 @@
     properties: "{{ item.1.properties|default(omit) }}"
     is_public: "{{ item.1.is_public|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - images
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -258,7 +258,7 @@
     name: "{{ item.1.name }}"
     description: "{{ item.1.description|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - security_groups
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -294,7 +294,7 @@
     remote_group: "{{ item.1.remote_group|default(omit) }}"
     remote_ip_prefix: "{{ item.1.remote_ip_prefix|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - security_groups_rules
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -320,7 +320,7 @@
     public_key: "{{ item.1.public_key|default(omit) }}"
     public_key_file: "{{ item.1.public_key_file|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - keypairs
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -354,7 +354,7 @@
     snapshot_id: "{{ item.1.snapshot_id|default(omit) }}"
     volume_type: "{{ item.1.volume_type|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - volumes
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
@@ -420,7 +420,7 @@
     volume_size: "{{ item.1.volume_size|default(omit) }}"
     volumes: "{{ item.1.volumes|default(omit) }}"
   with_subelements:
-    - "{{ profiles }}"
+    - "{{ profiles|default([]) }}"
     - servers
     - { skip_missing: yes }
   when: "{{ item.0.name in item_cloud.profiles }}"
