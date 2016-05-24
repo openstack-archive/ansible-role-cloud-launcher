@@ -391,6 +391,10 @@
   with_items: "{{ item_cloud.servers|default([]) }}"
   tags:
     - servers
+  register: os_server_result
+
+- add_host: name={{ item.server.public_v4 }} groups=cl_servers_just_created
+  with_items: "{{ os_server_result.results }}"
 
 - name: Create profiles servers for {{ item_cloud.name }}
   os_server:
@@ -426,3 +430,7 @@
   when: "{{ item.0.name in item_cloud.profiles }}"
   tags:
     - servers
+  register: os_server_result
+
+- add_host: name={{ item.server.public_v4 }} groups=cl_servers_just_created
+  with_items: "{{ os_server_result.results }}"
