@@ -393,7 +393,7 @@
     - servers
   register: os_server_result
 
-- add_host: name={{ item.server.public_v4 }} groups=cl_servers_just_created
+- add_host: name={{ item.server.name }} groups=cl_servers_just_created ansible_ssh_host={{ item.server.public_v4 }}
   with_items: "{{ os_server_result.results }}"
 
 - name: Create profiles servers for {{ item_cloud.name }}
@@ -432,5 +432,5 @@
     - servers
   register: os_server_result
 
-- add_host: name={{ item.server.public_v4 }} groups=cl_servers_just_created
+- add_host: name={{ item.server.name }} groups=cl_servers_just_created ansible_ssh_host={{ item.server.public_v4 }}
   with_items: "{{ os_server_result.results }}"
