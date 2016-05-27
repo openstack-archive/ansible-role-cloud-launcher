@@ -19,7 +19,7 @@
     - "{{ profiles|default([]) }}"
     - domains
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - domains
 
@@ -45,7 +45,7 @@
     - "{{ profiles|default([]) }}"
     - projects
     - { skip_missing: yes}
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - projects
 
@@ -75,7 +75,7 @@
     - "{{ profiles|default([]) }}"
     - users
     - { skip_missing: yes}
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - users
 
@@ -101,7 +101,7 @@
     - "{{ profiles|default([]) }}"
     - networks
     - { skip_missing: yes}
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - networks
 
@@ -129,7 +129,7 @@
     - "{{ profiles|default([]) }}"
     - subnets
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - subnets
 
@@ -161,7 +161,7 @@
     - "{{ profiles|default([]) }}"
     - routers
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - routers
 
@@ -195,7 +195,7 @@
     - "{{ profiles|default([]) }}"
     - flavors
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - flavors
 
@@ -237,7 +237,7 @@
     - "{{ profiles|default([]) }}"
     - images
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - images
 
@@ -261,7 +261,7 @@
     - "{{ profiles|default([]) }}"
     - security_groups
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - security_groups
 
@@ -297,7 +297,7 @@
     - "{{ profiles|default([]) }}"
     - security_groups_rules
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - security_groups_rules
 
@@ -323,7 +323,7 @@
     - "{{ profiles|default([]) }}"
     - keypairs
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - keypairs
 
@@ -357,7 +357,7 @@
     - "{{ profiles|default([]) }}"
     - volumes
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - volumes
 
@@ -427,7 +427,7 @@
     - "{{ profiles|default([]) }}"
     - servers
     - { skip_missing: yes }
-  when: "{{ item.0.name in item_cloud.profiles }}"
+  when: "{{ item_cloud.profiles is defined and item.0.name in item_cloud.profiles }}"
   tags:
     - servers
   register: os_server_result
