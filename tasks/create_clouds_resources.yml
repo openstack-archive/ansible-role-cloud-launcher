@@ -82,7 +82,7 @@
 - name: Create per-cloud networks for {{ item_cloud.name }}
   os_network:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
-    state: "{{ item.1.state|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
     name: "{{ item.name }}"
     external: "{{ item.external|default(omit) }}"
     project: "{{ item.project|default(omit) }}"
