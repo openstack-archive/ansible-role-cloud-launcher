@@ -308,6 +308,7 @@
     name: "{{ item.name }}"
     public_key: "{{ item.public_key|default(omit) }}"
     public_key_file: "{{ item.public_key_file|default(omit) }}"
+    verify: false
   with_items: "{{ item_cloud.keypairs|default([]) }}"
   tags:
     - keypairs
@@ -388,6 +389,8 @@
     userdata: "{{ item.userdata|default(omit) }}"
     volume_size: "{{ item.volume_size|default(omit) }}"
     volumes: "{{ item.volumes|default(omit) }}"
+    verify: false
+    timeout: 3600
   with_items: "{{ item_cloud.servers|default([]) }}"
   tags:
     - servers
