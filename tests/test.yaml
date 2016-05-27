@@ -21,6 +21,8 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - shell: python -c 'import sys; print sys.path'
+
     - name: Querying for test_domain domain
       shell: openstack --os-cloud devstack-admin domain show test_domain
       register: result
