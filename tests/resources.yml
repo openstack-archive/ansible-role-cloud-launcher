@@ -29,6 +29,16 @@ clouds:
         image: cirros-0.3.4-x86_64-uec
         flavor: c1
         network: test_network
+      - name: test_cluster
+        image: cirros-0.3.4-x86_64-uec
+        flavor: c1
+        network: test_network
+        node_count: 2
+      - name: test_cluster.testdomain
+        image: cirros-0.3.4-x86_64-uec
+        flavor: c1
+        network: test_network
+        node_count: 2
     networks:
       - name: test_network
     subnets:
