@@ -5,7 +5,7 @@
 - os_server:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_server.state|default(omit) }}"
-    name: "{{ item_server.name }}"
+    name: "{{ item_server.name.partition('.')[0] }}{{ '' if item_server.node_count is not defined else item }}{{ item_server.name.partition('.')[1] + item_server.name.partition('.')[2] }}"
     image: "{{ item_server.image }}"
     auto_ip: "{{ item_server.auto_ip|default(omit) }}"
     boot_from_volume: "{{ item_server.boot_from_volume|default(omit) }}"
@@ -28,6 +28,7 @@
     userdata: "{{ item_server.userdata|default(omit) }}"
     volume_size: "{{ item_server.volume_size|default(omit) }}"
     volumes: "{{ item_server.volumes|default(omit) }}"
+  with_sequence: start=1 end={{ item_server.node_count|default(1) }} format=%02x
   register: os_server_result
 
 - add_host: name={{ item.server.name }} groups=cl_servers_just_created ansible_ssh_host={{ item.server.public_v4 }}
