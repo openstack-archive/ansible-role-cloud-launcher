@@ -17,6 +17,10 @@
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
 
+  pre_tasks:
+    - name: Pause a bit to get DevStack up and running
+      pause: minutes=1
+
   roles:
     - "{{ rolename }}"
 
@@ -67,4 +71,36 @@
       changed_when: False
 
     - name: Assert test-network network has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster01 server
+      command: openstack --os-cloud devstack server show test_cluster01
+      register: result
+      changed_when: False
+
+    - name: Assert test_cluster01 server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster02 server
+      command: openstack --os-cloud devstack server show test_cluster02
+      register: result
+      changed_when: False
+
+    - name: Assert test_cluster02 server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster01.testdomain server
+      command: openstack --os-cloud devstack server show test_cluster01.testdomain
+      register: result
+      changed_when: False
+
+    - name: Assert test_cluster01.testdomain server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster02.testdomain server
+      command: openstack --os-cloud devstack server show test_cluster02.testdomain
+      register: result
+      changed_when: False
+
+    - name: Assert test_cluster02.testdomain server has been created
       assert: { that: result.rc == 0 }
