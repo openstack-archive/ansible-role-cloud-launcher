@@ -62,3 +62,31 @@
 
     - name: Assert test-network network has been created
       assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster01 server
+      shell: openstack --os-cloud devstack server show test_cluster01
+      register: result
+
+    - name: Assert test_cluster01 server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster02 server
+      shell: openstack --os-cloud devstack server show test_cluster02
+      register: result
+
+    - name: Assert test_cluster02 server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster01.testdomain server
+      shell: openstack --os-cloud devstack server show test_cluster01.testdomain
+      register: result
+
+    - name: Assert test_cluster01.testdomain server has been created
+      assert: { that: result.rc == 0 }
+
+    - name: Querying for test_cluster02.testdomain server
+      shell: openstack --os-cloud devstack server show test_cluster02.testdomain
+      register: result
+
+    - name: Assert test_cluster02.testdomain server has been created
+      assert: { that: result.rc == 0 }
