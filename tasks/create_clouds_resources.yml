@@ -362,3 +362,5 @@
     - volumes
 
 - include: create_servers.yml
+  tags:
+    - servers
