@@ -1,3 +1,7 @@
 ---
 os_client_config_cloud: envvars
 os_validate_certs: no
+generate_keypair: no
+generate_keypair_folder: /tmp
+generate_keypair_key_type: rsa
+generate_keypair_key_bits: 2048

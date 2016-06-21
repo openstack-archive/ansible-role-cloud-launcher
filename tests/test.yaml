@@ -22,43 +22,49 @@
 
   post_tasks:
     - name: Querying for test_domain domain
-      shell: openstack --os-cloud devstack-admin domain show test_domain
+      command: openstack --os-cloud devstack-admin domain show test_domain
       register: result
+      changed_when: False
 
     - name: Assert test_domain domain has been created
       assert: { that: result.rc == 0 }
 
     - name: Querying for test_project project
-      shell: openstack --os-cloud devstack-admin project show test_project --domain test_domain
+      command: openstack --os-cloud devstack-admin project show test_project --domain test_domain
       register: result
+      changed_when: False
 
     - name: Assert test_project project has been created
       assert: { that: result.rc == 0 }
 
     - name: Querying for test_user user
-      shell: openstack --os-cloud devstack-admin user show test_user --domain test_domain
+      command: openstack --os-cloud devstack-admin user show test_user --domain test_domain
       register: result
+      changed_when: False
 
     - name: Assert test_user user has been created
       assert: { that: result.rc == 0 }
 
     - name: Querying for test_server_a server
-      shell: openstack --os-cloud devstack-admin server show test_server_a
+      command: openstack --os-cloud devstack-admin server show test_server_a
       register: result
+      changed_when: False
 
     - name: Assert test-server-a server has been created
       assert: { that: result.rc == 0 }
 
     - name: Querying for test_server_b server
-      shell: openstack --os-cloud devstack server show test_server_b
+      command: openstack --os-cloud devstack server show test_server_b
       register: result
+      changed_when: False
 
     - name: Assert test_server_a server has been created
       assert: { that: result.rc == 0 }
 
     - name: Querying for test_network network
-      shell: openstack --os-cloud devstack network show test_network
+      command: openstack --os-cloud devstack network show test_network
       register: result
+      changed_when: False
 
     - name: Assert test-network network has been created
       assert: { that: result.rc == 0 }
