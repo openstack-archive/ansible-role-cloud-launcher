@@ -1,0 +1,6 @@
+---
+- os_keystone_domain:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_domain.state|default(omit) }}"
+    name: "{{ item_domain.name }}"
+    description: "{{ item_domain.description|default(omit) }}"
