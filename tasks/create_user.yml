@@ -1,0 +1,9 @@
+---
+  os_user:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_user.state|default(omit) }}"
+    name: "{{ item_user.name }}"
+    password: "{{ item_user.password }}"
+    email: "{{ item_user.email|default(omit) }}"
+    domain: "{{ item_user.domain|default(omit) }}"
+    default_project: "{{ item_user.default_project|default(omit) }}"
