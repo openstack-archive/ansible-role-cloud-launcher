@@ -1,2 +1,3 @@
 ansible>=2.1.0.0
-shade
+-e git://github.com/openstack-infra/shade.git/#egg=shade
+oslo.config==3.12.0
