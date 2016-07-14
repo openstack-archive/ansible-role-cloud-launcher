@@ -1,0 +1,11 @@
+---
+- os_nova_flavor:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_flavor.state|default(omit) }}"
+    name: "{{ item_flavor.name }}"
+    vcpus: "{{ item_flavor.vcpus }}"
+    ram: "{{ item_flavor.ram }}"
+    disk: "{{ item_flavor.disk }}"
+    swap: "{{ item_flavor.swap|default(omit) }}"
+    ephemeral: "{{ item_flavor.ephemeral|default(omit) }}"
+    rxtx_factor: "{{ item_flavor.rxtx_factor|default(omit) }}"
