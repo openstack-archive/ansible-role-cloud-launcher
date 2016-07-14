@@ -1,0 +1,11 @@
+---
+- os_volume:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_volume.state|default(omit) }}"
+    name: "{{ item_volume.name }}"
+    size: "{{ item_volume.size }}"
+    display_description: "{{ item_volume.display_description|default(omit) }}"
+    image: "{{ item_volume.image|default(omit) }}"
+    key: "{{ item_volume.key|default(omit) }}"
+    snapshot_id: "{{ item_volume.snapshot_id|default(omit) }}"
+    volume_type: "{{ item_volume.volume_type|default(omit) }}"
