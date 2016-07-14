@@ -1,0 +1,12 @@
+---
+- os_security_group_rule:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_security_group_rule.state|default(omit) }}"
+    security_group: "{{ item_security_group_rule.security_group }}"
+    direction: "{{ item_security_group_rule.direction|default(omit) }}"
+    ethertype: "{{ item_security_group_rule.ethertype|default(omit) }}"
+    port_range_max: "{{ item_security_group_rule.port_range_max|default(omit) }}"
+    port_range_min: "{{ item_security_group_rule.port_range_min|default(omit) }}"
+    protocol: "{{ item_security_group_rule.protocol|default(omit) }}"
+    remote_group: "{{ item_security_group_rule.remote_group|default(omit) }}"
+    remote_ip_prefix: "{{ item_security_group_rule.remote_ip_prefix|default(omit) }}"
