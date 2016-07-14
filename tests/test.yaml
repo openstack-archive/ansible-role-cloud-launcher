@@ -17,6 +17,10 @@
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
 
+  pre_tasks:
+    - name: Pause a bit to get DevStack up and running
+      pause: minutes=10
+
   roles:
     - "{{ rolename }}"
 
