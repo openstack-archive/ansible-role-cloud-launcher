@@ -1,0 +1,8 @@
+---
+- os_subnet:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_subnet.state|default(omit) }}"
+    name: "{{ item_subnet.name }}"
+    network_name: "{{ item_subnet.network_name|default(omit) }}"
+    cidr: "{{ item_subnet.cidr }}"
+    dns_nameservers: "{{ item_subnet.dns_nameservers|default(omit) }}"
