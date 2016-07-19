@@ -1,4 +1,7 @@
 ---
+- include: generate_keypair.yml
+  when: generate_keypair|bool
+
 - os_server:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_server.state|default(omit) }}"
@@ -15,7 +18,7 @@
     floating_ips: "{{ item_server.floating_ips|default(omit) }}"
     image_exclude: "{{ item_server.image_exclude|default(omit) }}"
     key: "{{ item_server.key|default(omit) }}"
-    key_name: "{{ item_server.key_name|default(omit) }}"
+    key_name: "{{ cl_generated_keypair_name|default(item_server.key_name)|default(omit) }}"
     meta: "{{ item_server.meta|default(omit) }}"
     network: "{{ item_server.network|default(omit) }}"
     nics: "{{ item_server.nics|default(omit) }}"

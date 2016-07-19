@@ -1,0 +1,18 @@
+---
+- block:
+    - name: Generate keypair name
+      set_fact: cl_generated_keypair_name=launch-{{ lookup('pipe', "date +'%s'") }}
+    - name: Generate SSH keys
+      shell: ssh-keygen -t "{{ generate_keypair_key_type }}" -b "{{ generate_keypair_key_bits }}" -N '' -f "{{ generate_keypair_folder }}"/"{{ cl_generated_keypair_name }}"
+    - name: Store public key filename path
+      set_fact: cl_generated_keypair_public_key_filename={{ generate_keypair_folder}}/{{ cl_generated_keypair_name }}.pub
+    - name: Store private key filename path
+      set_fact: cl_generated_keypair_private_key_filename={{ generate_keypair_folder}}/{{ cl_generated_keypair_name }}
+
+    - name: Create OpenStack keypair {{ cl_generated_keypair_name }}
+      os_keypair:
+        cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+        state: present
+        name: "{{ cl_generated_keypair_name }}"
+        public_key_file: "{{ cl_generated_keypair_public_key_filename }}"
+  when: generate_keypair|bool
