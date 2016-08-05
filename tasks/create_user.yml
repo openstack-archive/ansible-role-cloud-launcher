@@ -1,6 +1,7 @@
 ---
 - name: "Processing user {{ item_user.name }}"
   os_user:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_user.state|default(omit) }}"
     name: "{{ item_user.name }}"

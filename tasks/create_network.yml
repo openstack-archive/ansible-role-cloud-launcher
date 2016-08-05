@@ -1,6 +1,7 @@
 ---
 - name: "Processing network {{ item_network.name }}"
   os_network:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_network.state|default(omit) }}"
     name: "{{ item_network.name }}"

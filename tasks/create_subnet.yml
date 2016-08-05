@@ -1,6 +1,7 @@
 ---
 - name: "Processing subnet {{ item_subnet.name }}"
   os_subnet:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_subnet.state|default(omit) }}"
     name: "{{ item_subnet.name }}"

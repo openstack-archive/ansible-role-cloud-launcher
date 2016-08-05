@@ -11,6 +11,7 @@
   when: item_image.download_image_url is defined
 - name: "Processing image {{ item_image.name }}"
   os_image:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_image.state|default(omit) }}"
     name: "{{ item_image.name }}"

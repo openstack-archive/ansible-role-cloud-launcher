@@ -1,6 +1,7 @@
 ---
 - name: "Processing security_group_rule"
   os_security_group_rule:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_security_group_rule.state|default(omit) }}"
     security_group: "{{ item_security_group_rule.security_group }}"

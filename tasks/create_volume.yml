@@ -1,6 +1,7 @@
 ---
 - name: "Processing volume {{ item_volume.name }}"
   os_volume:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_volume.state|default(omit) }}"
     name: "{{ item_volume.name }}"

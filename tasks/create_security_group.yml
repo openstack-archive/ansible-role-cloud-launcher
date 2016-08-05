@@ -1,5 +1,6 @@
 ---
 - os_security_group:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_security_group.state|default(omit) }}"
     name: "{{ item_security_group.name }}"

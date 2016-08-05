@@ -1,6 +1,7 @@
 ---
 - name: "Processing domain {{ item_domain.name }}"
   os_keystone_domain:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_domain.state|default(omit) }}"
     name: "{{ item_domain.name }}"
