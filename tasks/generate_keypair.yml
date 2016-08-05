@@ -11,6 +11,7 @@
 
     - name: Create OpenStack keypair {{ cl_generated_keypair_name }}
       os_keypair:
+        validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
         cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
         state: present
         name: "{{ cl_generated_keypair_name }}"

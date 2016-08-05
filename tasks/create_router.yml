@@ -1,5 +1,6 @@
 ---
 - os_router:
+    validate_certs: "{{ item_cloud.validate_certs|default(omit) }}"
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_router.state|default(omit) }}"
     name: "{{ item_router.name }}"
