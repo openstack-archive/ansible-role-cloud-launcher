@@ -1,2 +1,3 @@
-ansible>=2.1.0.0
+ansible==2.1.0.0
 -e git://github.com/openstack-infra/shade.git/#egg=shade
+shade
