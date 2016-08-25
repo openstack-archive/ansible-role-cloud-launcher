@@ -166,6 +166,10 @@ clouds:
       - ops
   - name: yaycloud-qa
     oscc_cloud: yaycloud-qauser
+    regions:
+      - DFW
+      - IAD
+      - ORD
     profiles:
       - bootstrap-keypair
       - qa

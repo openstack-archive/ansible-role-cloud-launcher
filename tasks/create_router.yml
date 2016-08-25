@@ -8,3 +8,5 @@
     enable_snat: "{{ item_router.enable_snat|default(omit) }}"
     external_fixed_ips: "{{ item_router.external_fixed_ips|default(omit) }}"
     interfaces: "{{ item_router.interfaces|default(omit) }}"
+    region_name: "{{ item|default(omit) }}"
+  with_items: "{{ item_cloud.regions|default(None) }}"

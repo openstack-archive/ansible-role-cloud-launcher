@@ -6,3 +6,5 @@
     network_name: "{{ item_subnet.network_name|default(omit) }}"
     cidr: "{{ item_subnet.cidr }}"
     dns_nameservers: "{{ item_subnet.dns_nameservers|default(omit) }}"
+    region_name: "{{ item|default(omit) }}"
+  with_items: "{{ item_cloud.regions|default(None) }}"

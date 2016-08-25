@@ -9,3 +9,5 @@
     key: "{{ item_volume.key|default(omit) }}"
     snapshot_id: "{{ item_volume.snapshot_id|default(omit) }}"
     volume_type: "{{ item_volume.volume_type|default(omit) }}"
+    region_name: "{{ item|default(omit) }}"
+  with_items: "{{ item_cloud.regions|default(None) }}"
