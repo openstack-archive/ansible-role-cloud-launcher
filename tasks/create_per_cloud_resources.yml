@@ -1,4 +1,6 @@
 ---
+- debug: msg="PROCESSING PER CLOUD SPECIFIC RESOURCES FOR CLOUD {{ item_cloud.name }}"
+
 - include: create_domain.yml
   with_items: "{{ item_cloud.domains|default([]) }}"
   loop_control:
