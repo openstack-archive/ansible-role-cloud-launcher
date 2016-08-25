@@ -4,3 +4,4 @@
     state: "{{ item_security_group.state|default(omit) }}"
     name: "{{ item_security_group.name }}"
     description: "{{ item_security_group.description|default(omit) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"

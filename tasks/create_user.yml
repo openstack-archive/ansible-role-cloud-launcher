@@ -7,3 +7,4 @@
     email: "{{ item_user.email|default(omit) }}"
     domain: "{{ item_user.domain|default(omit) }}"
     default_project: "{{ item_user.default_project|default(omit) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"

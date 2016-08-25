@@ -164,8 +164,15 @@ clouds:
     profiles:
       - bootstrap-keypair
       - ops
-  - name: yaycloud-qa
+  - name: yaycloud-qa-dfw
     oscc_cloud: yaycloud-qauser
+    region_name: DFW
+    profiles:
+      - bootstrap-keypair
+      - qa
+  - name: yaycloud-qa-ord
+    oscc_cloud: yaycloud-qauser
+    region_name: ORD
     profiles:
       - bootstrap-keypair
       - qa

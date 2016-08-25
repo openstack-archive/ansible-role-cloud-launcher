@@ -13,3 +13,4 @@
     owner: "{{ item_image.owner|default(omit) }}"
     properties: "{{ item_image.properties|default(omit) }}"
     is_public: "{{ item_image.is_public|default(omit) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"

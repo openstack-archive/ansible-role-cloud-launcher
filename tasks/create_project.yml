@@ -5,3 +5,4 @@
     name: "{{ item_project.name }}"
     description: "{{ item_project.description|default(omit) }}"
     domain: "{{ item_project.domain|default(omit) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"

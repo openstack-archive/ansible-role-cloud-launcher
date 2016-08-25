@@ -5,3 +5,4 @@
     name: "{{ item_network.name }}"
     external: "{{ item_network.external|default(omit) }}"
     project: "{{ item_network.project|default(omit) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"

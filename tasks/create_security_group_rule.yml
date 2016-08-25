@@ -10,3 +10,4 @@
     protocol: "{{ item_security_group_rule.protocol|default(omit) }}"
     remote_group: "{{ item_security_group_rule.remote_group|default(omit) }}"
     remote_ip_prefix: "{{ item_security_group_rule.remote_ip_prefix|default(omit) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"
