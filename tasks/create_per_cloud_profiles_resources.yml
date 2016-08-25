@@ -1,4 +1,6 @@
 ---
+- debug: msg="PROCESSING PROFILES RESOURCES FOR CLOUD {{ item_cloud.name }}"
+
 - include: create_domain.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='domains')|list }}"
   loop_control:
