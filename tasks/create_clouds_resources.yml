@@ -1,4 +1,6 @@
 ---
+- debug: msg="PROCESSING CLOUD {{ item_cloud.name }}"
+
 - include: create_per_cloud_profiles_resources.yml
   with_items: "{{ item_cloud.profiles|default([]) }}"
   loop_control:
