@@ -53,6 +53,14 @@
     - name: Assert test-server-a server has been created
       assert: { that: result.rc == 0 }
 
+    - name: Querying for test_image image
+      command: openstack --os-cloud devstack-admin image show test_image
+      register: result
+      changed_when: False
+
+    - name: Assert test_image server has been created
+      assert: { that: result.rc == 0 }
+
     - name: Querying for test_server_b server
       command: openstack --os-cloud devstack server show test_server_b
       register: result

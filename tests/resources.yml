@@ -19,6 +19,11 @@ clouds:
     profiles:
       - test_profile_a
       - test_profile_b
+    images:
+      - name: test_image
+        download_image_url: http://download.cirros-cloud.net/0.3.0/cirros-0.3.0-x86_64-disk.img
+        download_image_dest: /tmp/test_image.img
+        filename: /tmp/test_image.img
     servers:
       - name: test_server_a
         image: cirros-0.3.4-x86_64-uec
