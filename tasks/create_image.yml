@@ -1,4 +1,14 @@
 ---
+- block:
+    - os_image_facts:
+        cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+        image: "{{ item_image.name }}"
+    - get_url:
+        url: "{{ item_image.download_image_url }}"
+        dest: "{{ item_image.download_image_dest|default(download_image_dest) }}"
+        force: "{{ item_image.download_image_force|default(download_image_force) }}"
+      when: not openstack_image
+  when: item_image.download_image_url is defined
 - os_image:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_image.state|default(omit) }}"
