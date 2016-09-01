@@ -5,3 +5,5 @@ generate_keypair: no
 generate_keypair_folder: /tmp
 generate_keypair_key_type: rsa
 generate_keypair_key_bits: 2048
+download_image_dest: /tmp
+download_image_force: no
