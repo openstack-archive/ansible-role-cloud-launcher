@@ -1,5 +1,5 @@
 ---
 - include: create_clouds_resources.yml
-  with_items: "{{ clouds }}"
+  with_items: "{{ clouds if cloud is not defined else clouds|selectattr('name', 'equalto', cloud)|list }}"
   loop_control:
     loop_var: item_cloud
