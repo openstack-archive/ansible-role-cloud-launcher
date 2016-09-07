@@ -1,6 +1,8 @@
 ---
-- include: create_per_cloud_profiles_resources.yml
+- name: "Processing profiles resources for cloud {{ item_cloud.name }}"
+  include: create_per_cloud_profiles_resources.yml
   with_items: "{{ item_cloud.profiles|default([]) }}"
   loop_control:
     loop_var: item_profile
-- include: create_per_cloud_resources.yml
+- name: "Processing per cloud resources for cloud {{ item_cloud.name }}"
+  include: create_per_cloud_resources.yml

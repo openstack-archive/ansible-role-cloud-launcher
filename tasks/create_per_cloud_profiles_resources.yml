@@ -1,5 +1,6 @@
 ---
-- include: create_domain.yml
+- name: "Processing domains resources for profile {{ item_profile.name }}"
+  include: create_domain.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='domains')|list }}"
   loop_control:
     loop_var: item_domain
@@ -7,7 +8,8 @@
   tags:
     - domains
 
-- include: create_project.yml
+- name: "Processing projects resources for profile {{ item_profile.name }}"
+  include: create_project.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='projects')|list }}"
   loop_control:
     loop_var: item_project
@@ -15,7 +17,8 @@
   tags:
     - projects
 
-- include: create_user.yml
+- name: "Processing users resources for profile {{ item_profile.name }}"
+  include: create_user.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='users')|list }}"
   loop_control:
     loop_var: item_user
@@ -23,7 +26,8 @@
   tags:
     - users
 
-- include: create_network.yml
+- name: "Processing networks resources for profile {{ item_profile.name }}"
+  include: create_network.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='networks')|list }}"
   loop_control:
     loop_var: item_network
@@ -31,7 +35,8 @@
   tags:
     - networks
 
-- include: create_subnet.yml
+- name: "Processing subnets resources for profile {{ item_profile.name }}"
+  include: create_subnet.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='subnets')|list }}"
   loop_control:
     loop_var: item_subnet
@@ -39,7 +44,8 @@
   tags:
     - subnets
 
-- include: create_router.yml
+- name: "Processing routers resources for profile {{ item_profile.name }}"
+  include: create_router.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='routers')|list }}"
   loop_control:
     loop_var: item_router
@@ -47,7 +53,8 @@
   tags:
     - routers
 
-- include: create_flavor.yml
+- name: "Processing flavors resources for profile {{ item_profile.name }}"
+  include: create_flavor.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='flavors')|list }}"
   loop_control:
     loop_var: item_flavor
@@ -55,7 +62,8 @@
   tags:
     - flavors
 
-- include: create_image.yml
+- name: "Processing images resources for profile {{ item_profile.name }}"
+  include: create_image.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='images')|list }}"
   loop_control:
     loop_var: item_image
@@ -63,7 +71,8 @@
   tags:
     - images
 
-- include: create_security_group.yml
+- name: "Processing security_groups resources for profile {{ item_profile.name }}"
+  include: create_security_group.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='security_groups')|list }}"
   loop_control:
     loop_var: item_security_group
@@ -71,7 +80,8 @@
   tags:
     - security_groups
 
-- include: create_security_group_rule.yml
+- name: "Processing security_groups_rules resources for profile {{ item_profile.name }}"
+  include: create_security_group_rule.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='security_groups_rules')|list }}"
   loop_control:
     loop_var: item_security_group_rule
@@ -79,7 +89,8 @@
   tags:
     - security_groups_rules
 
-- include: create_keypair.yml
+- name: "Processing keypairs resources for profile {{ item_profile.name }}"
+  include: create_keypair.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='keypairs')|list }}"
   loop_control:
     loop_var: item_keypair
@@ -87,7 +98,8 @@
   tags:
     - keypairs
 
-- include: create_volume.yml
+- name: "Processing volumes resources for profile {{ item_profile.name }}"
+  include: create_volume.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='volumes')|list }}"
   loop_control:
     loop_var: item_volume
@@ -95,7 +107,8 @@
   tags:
     - volumes
 
-- include: create_server.yml
+- name: "Processing servers resources for profile {{ item_profile.name }}"
+  include: create_server.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='servers')|list }}"
   loop_control:
     loop_var: item_server
