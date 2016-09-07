@@ -2,7 +2,8 @@
 - include: generate_keypair.yml
   when: generate_keypair|bool
 
-- os_server:
+- name: "Processing server {{ item_server.name }}"
+  os_server:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_server.state|default(omit) }}"
     name: "{{ item_server.name.partition('.')[0] }}{{ '' if item_server.node_count is not defined else item }}{{ item_server.name.partition('.')[1] + item_server.name.partition('.')[2] }}"
