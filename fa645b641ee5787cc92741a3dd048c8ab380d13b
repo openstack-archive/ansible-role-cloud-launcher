@@ -1,0 +1,9 @@
+Code-Review+2: yolanda.robla <yroblamo@redhat.com>
+Code-Review+2: Ricardo Carrillo Cruz <ricardo.carrillo.cruz@gmail.com>
+Workflow+1: Ricardo Carrillo Cruz <ricardo.carrillo.cruz@gmail.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 09 Sep 2016 11:46:54 +0000
+Reviewed-on: https://review.openstack.org/366723
+Project: openstack/ansible-role-cloud-launcher
+Branch: refs/heads/master
