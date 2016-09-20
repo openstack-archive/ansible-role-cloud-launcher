@@ -26,6 +26,15 @@
   tags:
     - users
 
+- name: "Processing users roles resources for profile {{ item_profile }}"
+  include: create_user_role.yml
+  with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='users_roles')|list }}"
+  loop_control:
+    loop_var: item_user_role
+  when: "{{ 'users_roles' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  tags:
+    - users_roles
+
 - name: "Processing networks resources for profile {{ item_profile }}"
   include: create_network.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='networks')|list }}"
