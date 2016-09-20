@@ -30,6 +30,11 @@ clouds:
         flavor: c1
     roles:
       - name: test_role
+    user_roles:
+      - role: test_role
+        user: test_user
+        project: test_project
+
   - name: devstack
     servers:
       - name: test_server_b

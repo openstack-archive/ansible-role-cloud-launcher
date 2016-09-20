@@ -53,6 +53,14 @@
     - name: Assert test_role role has been created
       assert: { that: result.rc == 0 }
 
+    - name: Querying for test_user role assignment
+      command: openstack --os-cloud devstack-admin role assignment list --user test_user --names -f value -c Role
+      register: result
+      changed_when: False
+
+    - name: Assert test_user has test_role role assigned
+      assert: { that: result.stdout == 'test_role' }
+
     - name: Querying for test_server_a server
       command: openstack --os-cloud devstack-admin server show test_server_a
       register: result
