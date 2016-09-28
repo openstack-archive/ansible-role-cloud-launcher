@@ -28,6 +28,8 @@ clouds:
       - name: test_server_a
         image: cirros-0.3.4-x86_64-uec
         flavor: c1
+    roles:
+      - name: test_role
   - name: devstack
     servers:
       - name: test_server_b
