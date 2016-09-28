@@ -23,6 +23,14 @@
   tags:
     - users
 
+- name: "Processing per cloud roles"
+  include: create_role.yml
+  with_items: "{{ item_cloud.roles|default([]) }}"
+  loop_control:
+    loop_var: item_role
+  tags:
+    - roles
+
 - name: "Processing per cloud networks"
   include: create_network.yml
   with_items: "{{ item_cloud.networks|default([]) }}"
