@@ -1,2 +1,2 @@
--e git://github.com/ansible/ansible.git@v2.1.2.0-0.3.rc3#egg=ansible
+ansible==2.1.2.0
 shade
