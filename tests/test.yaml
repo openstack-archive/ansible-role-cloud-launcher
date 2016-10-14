@@ -61,6 +61,14 @@
     - name: Assert test_user has test_role role assigned
       assert: { that: result.stdout == 'test_role' }
 
+    - name: Querying for test_project quotas
+      command: openstack --os-cloud devstack-admin quota show -c cores test_project
+      register: result
+      changed_when: False
+
+    - name: Assert test_user has test_role role assigned
+      assert: { that: result.stdout == '2' }
+
     - name: Querying for test_server_a server
       command: openstack --os-cloud devstack-admin server show test_server_a
       register: result

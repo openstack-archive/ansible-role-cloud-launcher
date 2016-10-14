@@ -1,0 +1,5 @@
+---
+- name: "Processing quotas for project {{ item_quota.name }}"
+  command: openstack --os-cloud "{{ item_cloud.name }}" quota set --"{{ item.key }}" "{{ item.value }}" "{{ item_quota.name }}"
+  with_dict: "{{ item_quota }}"
+  when: item.key != 'name'
