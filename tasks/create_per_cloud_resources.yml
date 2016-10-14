@@ -39,6 +39,14 @@
   tags:
     - user_roles
 
+- name: "Processing per cloud quotas"
+  include: create_quota.yml
+  with_items: "{{ item_cloud.quotas|default([]) }}"
+  loop_control:
+    loop_var: item_quota
+  tags:
+    - quotas
+
 - name: "Processing per cloud networks"
   include: create_network.yml
   with_items: "{{ item_cloud.networks|default([]) }}"

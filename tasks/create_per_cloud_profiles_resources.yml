@@ -44,6 +44,15 @@
   tags:
     - user_roles
 
+- name: "Processing quotas resources for profile {{ item_profile }}"
+  include: create_quota.yml
+  with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='quotas')|list }}"
+  loop_control:
+    loop_var: item_quota
+  when: "{{ 'quotas' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  tags:
+    - quotas
+
 - name: "Processing networks resources for profile {{ item_profile }}"
   include: create_network.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='networks')|list }}"
