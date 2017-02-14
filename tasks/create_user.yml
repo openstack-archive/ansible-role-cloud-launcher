@@ -9,3 +9,4 @@
     domain: "{{ item_user.domain|default(omit) }}"
     default_project: "{{ item_user.default_project|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"

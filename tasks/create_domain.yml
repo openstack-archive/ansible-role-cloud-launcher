@@ -6,3 +6,4 @@
     name: "{{ item_domain.name }}"
     description: "{{ item_domain.description|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"

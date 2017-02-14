@@ -4,3 +4,4 @@
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_role.state|default(omit) }}"
     name: "{{ item_role.name }}"
+    validate_certs: "{{ os_validate_certs }}"

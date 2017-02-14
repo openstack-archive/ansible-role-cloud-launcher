@@ -30,6 +30,7 @@
     volume_size: "{{ item_server.volume_size|default(omit) }}"
     volumes: "{{ item_server.volumes|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"
   with_sequence: start=1 end={{ item_server.node_count|default(1) }} format=%02x
   register: os_server_result
 

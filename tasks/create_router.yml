@@ -10,3 +10,4 @@
     external_fixed_ips: "{{ item_router.external_fixed_ips|default(omit) }}"
     interfaces: "{{ item_router.interfaces|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"

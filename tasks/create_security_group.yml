@@ -5,3 +5,4 @@
     name: "{{ item_security_group.name }}"
     description: "{{ item_security_group.description|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"
