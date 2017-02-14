@@ -11,3 +11,4 @@
     ephemeral: "{{ item_flavor.ephemeral|default(omit) }}"
     rxtx_factor: "{{ item_flavor.rxtx_factor|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"

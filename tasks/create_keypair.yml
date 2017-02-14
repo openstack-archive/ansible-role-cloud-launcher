@@ -7,3 +7,4 @@
     public_key: "{{ item_keypair.public_key|default(omit) }}"
     public_key_file: "{{ item_keypair.public_key_file|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"

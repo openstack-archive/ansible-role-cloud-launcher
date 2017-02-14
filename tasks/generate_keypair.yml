@@ -15,4 +15,5 @@
         state: present
         name: "{{ cl_generated_keypair_name }}"
         public_key_file: "{{ cl_generated_keypair_public_key_filename }}"
+        validate_certs: "{{ os_validate_certs }}"
   when: generate_keypair|bool

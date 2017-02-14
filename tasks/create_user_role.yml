@@ -7,3 +7,4 @@
     domain: "{{ item_user_role.domain|default(omit) }}"
     project: "{{ item_user_role.project|default(omit) }}"
     user: "{{ item_user_role.user|default(omit) }}"
+    validate_certs: "{{ os_validate_certs }}"
