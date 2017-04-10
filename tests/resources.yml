@@ -66,3 +66,7 @@ clouds:
       - name: test_router
         network: public
         interfaces: test_subnet
+    keypairs:
+      - name: foobar
+        public_key: |
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCj3wSAV3ZhWkNbmaMucLJa2fnEy4PD3TMMnuOfKeu7lxLr4PX4AQyQix2jEPWbZdooY2ZNyrz41KfA57MIPqsXeeI7M/EAO1Dyr//q19Vs5mghCh2fy+EdS2G5xkIwKQ+BhTQqWeYWTQl8XZmzigtklIJha501yHh25JMMh/oJ/gSV+C+qLezJ7wYaT/1STRxi33y5PBEfH9OUp2oHX6CsJoBtZjV3acNA1CU6iUH52b1LdBqjvru11rJ7PI+uhs4HnqGJgQVDRMcatYwiKxMWJFnUnYC7midx8gNlqkbcu8MjnsTeKAGhH5y13u3q6Jern2/kzE4imaWSvpRv2Fmcp5X45PcfqGluZ0zJYjCem3QCVLDO4fw5yQvijcDNacDS+Z9GKfTzrl41miGNY+kgVhgTdUOgs+ouDoZg00l6DXd53inY551H3XsLThQJXjHCqop3QZKOFayk8xBpMnQsdg6M7bAwfoszcZvzoBK9EBAdCf8Z86A7PfI4qx6JLeWkfjLrlh+wSbrAZqUrFKjopfDKQPLzXbRlExGmsIV5G9pFDvwXe3ci7UTdAsiHNFz03SCerLFqLGLkDaAEg8HOJ5pZ7kpRqttxvtmV6XT+1MbGmA4EHyG+a5LOAAX0TK5qfMxMt3BpMiizZGXj3v0o9Wf5N6ng3TYGvsRxJZGDUw== foobar@example.org
