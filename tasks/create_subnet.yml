@@ -2,9 +2,12 @@
 - name: "Processing subnet {{ item_subnet.name }}"
   os_subnet:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    ip_version: "{{ item_subnet.ip_version|default(omit) }}"
+    ipv6_ra_mode: "{{ item_subnet.ipv6_ra_mode|default(omit) }}"
     state: "{{ item_subnet.state|default(omit) }}"
     name: "{{ item_subnet.name }}"
     network_name: "{{ item_subnet.network_name|default(omit) }}"
     cidr: "{{ item_subnet.cidr }}"
     dns_nameservers: "{{ item_subnet.dns_nameservers|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+
