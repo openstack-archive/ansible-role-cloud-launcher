@@ -1,4 +1,5 @@
 ---
+clouds: []
 os_client_config_cloud: envvars
 os_validate_certs: no
 generate_keypair: no
