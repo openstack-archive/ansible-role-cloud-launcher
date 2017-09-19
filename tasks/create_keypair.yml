@@ -1,5 +1,5 @@
 ---
-- name: "Processing keypair {{ item_keypair.name }}"
+- name: "Processing keypair"
   os_keypair:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_keypair.state|default(omit) }}"
@@ -7,3 +7,11 @@
     public_key: "{{ item_keypair.public_key|default(omit) }}"
     public_key_file: "{{ item_keypair.public_key_file|default(omit) }}"
     region_name: "{{ item_cloud.region_name|default(omit) }}"
+    failed_when: false
+  register: cloud_keypair
+
+- include: recreate_keypair.yaml
+  when:
+    - item_keypair.state is defined
+    - item_keypair.state == 'present'
+    - cloud_keypair.key is not defined

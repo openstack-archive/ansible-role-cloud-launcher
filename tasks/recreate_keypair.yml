@@ -1,0 +1,15 @@
+- name: "Deleting keypair"
+  os_keypair:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"
+    state: absent
+    name: "{{ item_keypair.name }}"
+
+- name: "Re-adding keypair"
+  os_keypair:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"
+    state: present
+    name: "{{ item_keypair.name }}"
+    public_key: "{{ item_keypair.public_key|default(omit) }}"
+    public_key_file: "{{ item_keypair.public_key_file|default(omit) }}"
