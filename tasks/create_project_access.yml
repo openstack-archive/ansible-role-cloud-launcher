@@ -1,0 +1,9 @@
+---
+- name: "Processing project access {{ item_project_access.name }}"
+  os_project_access:
+    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+    state: "{{ item_project_access.state|default(omit) }}"
+    target_project_id: "{{ item_project_access.target_project_id }}"
+    resource_type: "{{ item_project_access.resource_type }}"
+    resource_name: "{{ item_project_access.resource_name }}"
+    region_name: "{{ item_cloud.region_name|default(omit) }}"
