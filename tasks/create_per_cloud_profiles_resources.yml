@@ -89,6 +89,15 @@
   tags:
     - flavors
 
+- name: "Processing project access for profile {{ item_profile }}"
+  include: create_project_access.yml
+  with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='project_access')|list }}"
+  loop_control:
+    loop_var: item_project_access
+  when: "{{ 'project_access' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  tags:
+    - project-access
+
 - name: "Processing images resources for profile {{ item_profile }}"
   include: create_image.yml
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='images')|list }}"

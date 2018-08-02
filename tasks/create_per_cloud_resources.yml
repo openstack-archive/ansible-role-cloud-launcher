@@ -79,6 +79,14 @@
   tags:
     - flavors
 
+- name: "Processing per cloud project access"
+  include: create_project_access.yml
+  with_items: "{{ item_cloud.project_access|default([]) }}"
+  loop_control:
+    loop_var: item_project_access
+  tags:
+    - project-access
+
 - name: "Processing per cloud images"
   include: create_image.yml
   with_items: "{{ item_cloud.images|default([]) }}"
