@@ -5,8 +5,8 @@
         image: "{{ item_image.name }}"
     - get_url:
         url: "{{ item_image.download_image_url }}"
-        dest: "{{ item_image.download_image_dest|default(download_image_dest) }}"
-        force: "{{ item_image.download_image_force|default(download_image_force) }}"
+        dest: "{{ item_image.download_image_dest|default(item_image.download_image_dest) }}"
+        force: "{{ item_image.download_image_force|default(item_image.download_image_force) }}"
       when: not openstack_image
   when: item_image.download_image_url is defined
 - name: "Processing image {{ item_image.name }}"
