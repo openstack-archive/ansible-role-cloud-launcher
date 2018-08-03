@@ -21,7 +21,7 @@ clouds:
       - test_profile_b
     images:
       - name: test_image
-        download_image_url: "file:///opt/stack/cache/files/cirros-0.3.4-x86_64-disk.img"
+        download_image_url: "file:///opt/stack/devstack/files/cirros-0.3.5-x86_64-disk.img"
         download_image_dest: /tmp/test_image.img
         filename: /tmp/test_image.img
     servers:
