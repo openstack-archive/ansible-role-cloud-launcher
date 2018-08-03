@@ -21,12 +21,12 @@ clouds:
       - test_profile_b
     images:
       - name: test_image
-        download_image_url: "file:///opt/stack/cache/files/cirros-0.3.4-x86_64-disk.img"
+        download_image_url: "file:///opt/stack/devstack/files/cirros-0.3.5-x86_64-disk.img"
         download_image_dest: /tmp/test_image.img
         filename: /tmp/test_image.img
     servers:
       - name: test_server_a
-        image: cirros-0.3.4-x86_64-uec
+        image: cirros-0.3.5-x86_64-disk
         flavor: c1
     roles:
       - name: test_role
@@ -43,16 +43,16 @@ clouds:
   - name: devstack
     servers:
       - name: test_server_b
-        image: cirros-0.3.4-x86_64-uec
+        image: cirros-0.3.5-x86_64-disk
         flavor: c1
         network: test_network
       - name: test_cluster
-        image: cirros-0.3.4-x86_64-uec
+        image: cirros-0.3.5-x86_64-disk
         flavor: c1
         network: test_network
         node_count: 2
       - name: test_cluster.testdomain
-        image: cirros-0.3.4-x86_64-uec
+        image: cirros-0.3.5-x86_64-disk
         flavor: c1
         network: test_network
         node_count: 2
