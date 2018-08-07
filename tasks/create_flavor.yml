@@ -7,6 +7,7 @@
     vcpus: "{{ item_flavor.vcpus }}"
     ram: "{{ item_flavor.ram }}"
     disk: "{{ item_flavor.disk }}"
+    is_public: "{{ item_flavor.is_public|default(omit) }}"
     swap: "{{ item_flavor.swap|default(omit) }}"
     ephemeral: "{{ item_flavor.ephemeral|default(omit) }}"
     rxtx_factor: "{{ item_flavor.rxtx_factor|default(omit) }}"
