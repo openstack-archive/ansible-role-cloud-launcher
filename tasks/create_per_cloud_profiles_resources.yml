@@ -4,7 +4,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='domains')|list }}"
   loop_control:
     loop_var: item_domain
-  when: "{{ 'domains' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'domains' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - domains
 
@@ -13,7 +13,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='projects')|list }}"
   loop_control:
     loop_var: item_project
-  when: "{{ 'projects' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'projects' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - projects
 
@@ -22,7 +22,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='users')|list }}"
   loop_control:
     loop_var: item_user
-  when: "{{ 'users' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'users' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - users
 
@@ -31,7 +31,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='roles')|list }}"
   loop_control:
     loop_var: item_role
-  when: "{{ 'roles' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'roles' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - roles
 
@@ -40,7 +40,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='user_roles')|list }}"
   loop_control:
     loop_var: item_user_role
-  when: "{{ 'user_roles' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'user_roles' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - user_roles
 
@@ -49,7 +49,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='quotas')|list }}"
   loop_control:
     loop_var: item_quota
-  when: "{{ 'quotas' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'quotas' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - quotas
 
@@ -58,7 +58,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='networks')|list }}"
   loop_control:
     loop_var: item_network
-  when: "{{ 'networks' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'networks' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - networks
 
@@ -67,7 +67,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='subnets')|list }}"
   loop_control:
     loop_var: item_subnet
-  when: "{{ 'subnets' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'subnets' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - subnets
 
@@ -76,7 +76,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='routers')|list }}"
   loop_control:
     loop_var: item_router
-  when: "{{ 'routers' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'routers' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - routers
 
@@ -85,7 +85,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='flavors')|list }}"
   loop_control:
     loop_var: item_flavor
-  when: "{{ 'flavors' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'flavors' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - flavors
 
@@ -94,7 +94,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='images')|list }}"
   loop_control:
     loop_var: item_image
-  when: "{{ 'images' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'images' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - images
 
@@ -103,7 +103,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='security_groups')|list }}"
   loop_control:
     loop_var: item_security_group
-  when: "{{ 'security_groups' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'security_groups' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - security_groups
 
@@ -112,7 +112,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='security_groups_rules')|list }}"
   loop_control:
     loop_var: item_security_group_rule
-  when: "{{ 'security_groups_rules' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'security_groups_rules' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - security_groups_rules
 
@@ -121,7 +121,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='keypairs')|list }}"
   loop_control:
     loop_var: item_keypair
-  when: "{{ 'keypairs' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'keypairs' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - keypairs
 
@@ -130,7 +130,7 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='volumes')|list }}"
   loop_control:
     loop_var: item_volume
-  when: "{{ 'volumes' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'volumes' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - volumes
 
@@ -139,6 +139,6 @@
   with_items: "{{ profiles|selectattr('name', 'equalto', item_profile)|map(attribute='servers')|list }}"
   loop_control:
     loop_var: item_server
-  when: "{{ 'servers' in profiles|selectattr('name', 'equalto', item_profile)|list|first }}"
+  when: "'servers' in profiles|selectattr('name', 'equalto', item_profile)|list|first"
   tags:
     - servers
