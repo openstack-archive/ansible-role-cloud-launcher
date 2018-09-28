@@ -1,6 +1,6 @@
 ---
 - name: "Processing per cloud domains"
-  include: create_domain.yml
+  include_tasks: create_domain.yml
   with_items: "{{ item_cloud.domains|default([]) }}"
   loop_control:
     loop_var: item_domain
@@ -8,7 +8,7 @@
     - domains
 
 - name: "Processing per cloud projects"
-  include: create_project.yml
+  include_tasks: create_project.yml
   with_items: "{{ item_cloud.projects|default([]) }}"
   loop_control:
     loop_var: item_project
@@ -16,7 +16,7 @@
     - projects
 
 - name: "Processing per cloud users"
-  include: create_user.yml
+  include_tasks: create_user.yml
   with_items: "{{ item_cloud.users|default([]) }}"
   loop_control:
     loop_var: item_user
@@ -24,7 +24,7 @@
     - users
 
 - name: "Processing per cloud roles"
-  include: create_role.yml
+  include_tasks: create_role.yml
   with_items: "{{ item_cloud.roles|default([]) }}"
   loop_control:
     loop_var: item_role
@@ -32,7 +32,7 @@
     - roles
 
 - name: "Processing per cloud user roles"
-  include: create_user_role.yml
+  include_tasks: create_user_role.yml
   with_items: "{{ item_cloud.user_roles|default([]) }}"
   loop_control:
     loop_var: item_user_role
@@ -40,7 +40,7 @@
     - user_roles
 
 - name: "Processing per cloud quotas"
-  include: create_quota.yml
+  include_tasks: create_quota.yml
   with_items: "{{ item_cloud.quotas|default([]) }}"
   loop_control:
     loop_var: item_quota
@@ -48,7 +48,7 @@
     - quotas
 
 - name: "Processing per cloud networks"
-  include: create_network.yml
+  include_tasks: create_network.yml
   with_items: "{{ item_cloud.networks|default([]) }}"
   loop_control:
     loop_var: item_network
@@ -56,7 +56,7 @@
     - networks
 
 - name: "Processing per cloud subnets"
-  include: create_subnet.yml
+  include_tasks: create_subnet.yml
   with_items: "{{ item_cloud.subnets|default([]) }}"
   loop_control:
     loop_var: item_subnet
@@ -64,7 +64,7 @@
     - subnets
 
 - name: "Processing per cloud routers"
-  include: create_router.yml
+  include_tasks: create_router.yml
   with_items: "{{ item_cloud.routers|default([]) }}"
   loop_control:
     loop_var: item_router
@@ -72,7 +72,7 @@
     - routers
 
 - name: "Processing per cloud flavors"
-  include: create_flavor.yml
+  include_tasks: create_flavor.yml
   with_items: "{{ item_cloud.flavors|default([]) }}"
   loop_control:
     loop_var: item_flavor
@@ -80,7 +80,7 @@
     - flavors
 
 - name: "Processing per cloud images"
-  include: create_image.yml
+  include_tasks: create_image.yml
   with_items: "{{ item_cloud.images|default([]) }}"
   loop_control:
     loop_var: item_image
@@ -88,7 +88,7 @@
     - images
 
 - name: "Processing per cloud security_groups"
-  include: create_security_group.yml
+  include_tasks: create_security_group.yml
   with_items: "{{ item_cloud.security_groups|default([]) }}"
   loop_control:
     loop_var: item_security_group
@@ -96,7 +96,7 @@
     - security_groups
 
 - name: "Processing per cloud security_group_rules"
-  include: create_security_group_rule.yml
+  include_tasks: create_security_group_rule.yml
   with_items: "{{ item_cloud.security_groups_rules|default([]) }}"
   loop_control:
     loop_var: item_security_group_rule
@@ -104,7 +104,7 @@
     - security_groups_rules
 
 - name: "Processing per cloud keypairs"
-  include: create_keypair.yml
+  include_tasks: create_keypair.yml
   with_items: "{{ item_cloud.keypairs|default([]) }}"
   loop_control:
     loop_var: item_keypair
@@ -112,7 +112,7 @@
     - keypairs
 
 - name: "Processing per cloud volumes"
-  include: create_volume.yml
+  include_tasks: create_volume.yml
   with_items: "{{ item_cloud.volumes|default([]) }}"
   loop_control:
     loop_var: item_volume
@@ -120,7 +120,7 @@
     - volumes
 
 - name: "Processing per cloud servers"
-  include: create_server.yml
+  include_tasks: create_server.yml
   with_items: "{{ item_cloud.servers|default([]) }}"
   loop_control:
     loop_var: item_server

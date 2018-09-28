@@ -1,5 +1,5 @@
 ---
-- include: generate_keypair.yml
+- include_tasks: generate_keypair.yml
   when: generate_keypair|bool
 
 - name: "Processing server {{ item_server.name }}"
