@@ -1,0 +1,8 @@
+Code-Review+2: Clark Boylan <cboylan@sapwetik.org>
+Workflow+1: Ian Wienand <iwienand@redhat.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 06 Nov 2018 23:41:23 +0000
+Reviewed-on: https://review.openstack.org/616027
+Project: openstack/ansible-role-cloud-launcher
+Branch: refs/heads/master
