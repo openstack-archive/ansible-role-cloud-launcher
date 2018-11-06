@@ -1,5 +1,5 @@
 ---
-- name: "Processing network {{ item_network.name }}"
+- name: "Processing network {{ item_network.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_network:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_network.state|default(omit) }}"

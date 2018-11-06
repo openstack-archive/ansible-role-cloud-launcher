@@ -1,5 +1,5 @@
 ---
-- name: "Processing user {{ item_user.name }}"
+- name: "Processing user {{ item_user.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_user:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_user.state|default(omit) }}"

@@ -1,5 +1,5 @@
 ---
-- name: "Processing volume {{ item_volume.name }}"
+- name: "Processing volume {{ item_volume.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_volume:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_volume.state|default(omit) }}"

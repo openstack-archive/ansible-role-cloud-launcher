@@ -1,5 +1,5 @@
 ---
-- name: "Processing flavor {{ item_flavor.name }}"
+- name: "Processing flavor {{ item_flavor.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_nova_flavor:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_flavor.state|default(omit) }}"

@@ -1,5 +1,5 @@
 ---
-- name: "Processing project {{ item_project.name }}"
+- name: "Processing project {{ item_project.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_project:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_project.state|default(omit) }}"

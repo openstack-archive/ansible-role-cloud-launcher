@@ -1,5 +1,5 @@
 ---
-- name: "Processing security_group_rule"
+- name: "Processing security_group_rule for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_security_group_rule:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_security_group_rule.state|default(omit) }}"

@@ -1,5 +1,5 @@
 ---
-- name: "Processing subnet {{ item_subnet.name }}"
+- name: "Processing subnet {{ item_subnet.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_subnet:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_subnet.state|default(omit) }}"
