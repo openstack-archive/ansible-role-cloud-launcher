@@ -1,5 +1,5 @@
 ---
-- name: "Processing router {{ item_router.name }}"
+- name: "Processing router {{ item_router.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_router:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_router.state|default(omit) }}"

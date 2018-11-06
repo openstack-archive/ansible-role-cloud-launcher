@@ -9,7 +9,7 @@
         force: "{{ item_image.download_image_force|default(download_image_force) }}"
       when: not openstack_image
   when: item_image.download_image_url is defined
-- name: "Processing image {{ item_image.name }}"
+- name: "Processing image {{ item_image.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_image:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_image.state|default(omit) }}"

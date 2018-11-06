@@ -1,5 +1,5 @@
 ---
-- name: "Processing keypair {{ item_keypair.name }}"
+- name: "Processing keypair {{ item_keypair.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
   os_keypair:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_keypair.state|default(omit) }}"
