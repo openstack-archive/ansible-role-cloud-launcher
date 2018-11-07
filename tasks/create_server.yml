@@ -2,7 +2,7 @@
 - include: generate_keypair.yml
   when: generate_keypair|bool
 
-- name: "Processing server {{ item_server.name }}"
+- name: "Processing server {{ item_server.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }} {{ item_cloud.region_name|default('') }}"
   os_server:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_server.state|default(omit) }}"

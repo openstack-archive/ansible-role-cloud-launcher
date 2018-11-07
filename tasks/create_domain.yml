@@ -1,5 +1,5 @@
 ---
-- name: "Processing domain {{ item_domain.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
+- name: "Processing domain {{ item_domain.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }} {{ item_cloud.region_name|default('') }}"
   os_keystone_domain:
     cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
     state: "{{ item_domain.state|default(omit) }}"
