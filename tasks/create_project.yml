@@ -1,9 +1,0 @@
----
-- name: "Processing project {{ item_project.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }} {{ item_cloud.region_name|default('') }}"
-  os_project:
-    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
-    state: "{{ item_project.state|default(omit) }}"
-    name: "{{ item_project.name }}"
-    description: "{{ item_project.description|default(omit) }}"
-    domain: "{{ item_project.domain|default(omit) }}"
-    region_name: "{{ item_cloud.region_name|default(omit) }}"

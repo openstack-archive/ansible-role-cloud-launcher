@@ -1,8 +1,0 @@
----
-- name: "Processing quotas for project {{ item_quota.name }} in {{ item_cloud.name }} {{ item_cloud.region_name|default('') }}"
-  command: openstack quota set --"{{ item.key }}" "{{ item.value }}" "{{ item_quota.name }}"
-  environment:
-    OS_CLOUD: "{{ item_cloud.name }}"
-    OS_REGION_NAME: "{{ item_cloud.region_name|default('')}}"
-  with_dict: "{{ item_quota }}"
-  when: item.key != 'name'

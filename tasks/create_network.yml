@@ -1,9 +1,0 @@
----
-- name: "Processing network {{ item_network.name }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }} {{ item_cloud.region_name|default('') }}"
-  os_network:
-    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
-    state: "{{ item_network.state|default(omit) }}"
-    name: "{{ item_network.name }}"
-    external: "{{ item_network.external|default(omit) }}"
-    project: "{{ item_network.project|default(omit) }}"
-    region_name: "{{ item_cloud.region_name|default(omit) }}"

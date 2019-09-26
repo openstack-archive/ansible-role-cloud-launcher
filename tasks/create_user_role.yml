@@ -1,9 +1,0 @@
----
-- name: "Processing user role {{ item_user_role.role }} for {{ item_cloud.oscc_cloud|default(item_cloud.name) }} {{ item_cloud.region_name|default('') }}"
-  os_user_role:
-    cloud: "{{ item_cloud.oscc_cloud|default(item_cloud.name) }}"
-    state: "{{ item_user_role.state|default(omit) }}"
-    role: "{{ item_user_role.role }}"
-    domain: "{{ item_user_role.domain|default(omit) }}"
-    project: "{{ item_user_role.project|default(omit) }}"
-    user: "{{ item_user_role.user|default(omit) }}"
